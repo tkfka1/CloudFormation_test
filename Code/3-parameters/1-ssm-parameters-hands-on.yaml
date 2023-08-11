@@ -1,0 +1,21 @@
+# SSM Parameter Type : Systems Manager Parameter Store
+Parameters:
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /dev/ec2/instanceType
+    #먼저 Parameter Store에서 /dev/ec2/instanceType로 파라미터 생성, 값은 't2.micro'
+
+  ImageId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
+     # [서비스 선택]에서 'ami-amazon-linux-latest' 선택
+    #  파라미터 스토어의 [공용 파라미터]에 '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2' 입력
+    #  검색 결과 매칭되면, 결과값 링크 클릭
+    # 상세 페이지에서 [값] 확인 ami-0b7f251f110d30ada, 즉 /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2로 검색하면 ami-0b7f251f110d30ada이 나온다는 뜻
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref ImageId

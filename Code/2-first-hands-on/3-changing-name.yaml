@@ -1,0 +1,15 @@
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: true
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      BucketName: "henry-bucket-20230810"
+#생성한 Bucket안에 객체가 한개라도 있으면 Stack 삭제를 통해 Bucket 삭제 실패함.

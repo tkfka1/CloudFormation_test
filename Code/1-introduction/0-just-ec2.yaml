@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description:  ap-northeast-2a, Amazon Linux 2 AMI x86
+Resources:
+  MyInstance: 
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: ap-northeast-2a
+      ImageId: ami-055179a7fc9fb032d
+      InstanceType: t2.micro
